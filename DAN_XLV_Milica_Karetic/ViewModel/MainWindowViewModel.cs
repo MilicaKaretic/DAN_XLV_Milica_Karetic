@@ -214,7 +214,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     else
                     {
                         service.DeleteProduct(productID);
-                        MessageBox.Show("Product deleted");
+                        MessageBox.Show("Product has been deleted");
                     }
 
                     using (WarehouseDBEntities wcf = new WarehouseDBEntities())

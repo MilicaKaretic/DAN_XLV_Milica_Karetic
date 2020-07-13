@@ -106,7 +106,11 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     Product product = service.AddProduct(Product);
                     if (product != null)
                     {
-                        MessageBox.Show("Product has been added.");
+                        if (Service.action == "added")
+                            MessageBox.Show("Product has been added");
+                        else if (Service.action == "updated")
+                            MessageBox.Show("Product has been updated");
+                        //MessageBox.Show("Product added.");
                         isUpdateProduct = true;
                         addProduct.Close();
                     }

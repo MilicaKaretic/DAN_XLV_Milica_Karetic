@@ -13,6 +13,7 @@ namespace DAN_XLV_Milica_Karetic
         /// track current product quantity in warehouse
         /// </summary>
         public static int currentWarehouseQuantity;
+        public static string action;
 
         /// <summary>
         /// Get and update current product quantity in warehouse
@@ -60,6 +61,8 @@ namespace DAN_XLV_Milica_Karetic
                         context.SaveChanges();
 
                         product.ProductID = p.ProductID;
+
+                        action = "added";
                         return product;
                     }
                     else
@@ -72,6 +75,8 @@ namespace DAN_XLV_Milica_Karetic
                         productToEdit.Quantity = product.Quantity;
                         productToEdit.ProductID = product.ProductID;
                         context.SaveChanges();
+
+                        action = "updated";
                         return product;
                     }
                     
