@@ -85,5 +85,22 @@ namespace DAN_XLV_Milica_Karetic
             
 
         }
+
+        public void DeleteProduct(int id)
+        {
+            try
+            {
+                using (WarehouseDBEntities context = new WarehouseDBEntities())
+                {
+                    Product productToDelete = (from r in context.Products where r.ProductID == id select r).First();
+                    context.Products.Remove(productToDelete);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
     }
 }

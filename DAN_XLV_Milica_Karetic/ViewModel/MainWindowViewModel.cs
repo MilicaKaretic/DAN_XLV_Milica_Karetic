@@ -14,6 +14,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
     class MainWindowViewModel : BaseViewModel
     {
         MainWindow main;
+        Service service = new Service();
 
         #region Properties
 
@@ -95,7 +96,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         }
 
         /// <summary>
-        /// Add student execute
+        /// Add product execute
         /// </summary>
         private void AddProductExecute()
         {
@@ -123,6 +124,121 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         /// <returns>Can or cannot</returns>
         private bool CaAddProductExecute()
         {          
+                return true;
+        }
+        private ICommand editProduct;
+        /// <summary>
+        /// Edit product command
+        /// </summary>
+        public ICommand EditProduct
+        {
+            get
+            {
+                if (editProduct == null)
+                {
+                    editProduct = new RelayCommand(param => EditProductExecute(), param => CanEditProductExecute());
+                }
+                return editProduct;
+            }
+        }
+
+        /// <summary>
+        /// Edit product execute
+        /// </summary>
+        private void EditProductExecute()
+        {
+            try
+            {
+                if (Product != null)
+                {
+                    AddProduct addProduct = new AddProduct(Product);
+                    addProduct.ShowDialog();
+                    if ((addProduct.DataContext as AddProductViewModel).IsUpdateProduct == true)
+                    {
+                        using (WarehouseDBEntities wcf = new WarehouseDBEntities())
+                        {
+                            ProductList = wcf.Products.ToList();
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Can edit product execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanEditProductExecute()
+        {
+            if (Product == null)
+                return false;
+            else
+                return true;
+        }
+
+        private ICommand deleteProduct;
+        /// <summary>
+        /// Delete product command
+        /// </summary>
+        public ICommand DeleteProduct
+        {
+            get
+            {
+                if (deleteProduct == null)
+                {
+                    deleteProduct = new RelayCommand(param => DeleteProductExecute(), param => CanDeleteProductExecute());
+                }
+                return deleteProduct;
+            }
+        }
+
+        /// <summary>
+        /// Delete product execute
+        /// </summary>
+        private void DeleteProductExecute()
+        {
+            try
+            {
+                if (Product != null)
+                {
+                    int productID = Product.ProductID;
+                    if(Product.Stored == "stored")
+                    {
+                        MessageBox.Show("Can't delete stored product");
+                    }
+                    else
+                    {
+                        service.DeleteProduct(productID);
+                        MessageBox.Show("Product deleted");
+                    }
+
+                    using (WarehouseDBEntities wcf = new WarehouseDBEntities())
+                    {
+                        ProductList = wcf.Products.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Can delete product execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanDeleteProductExecute()
+        {
+            if (Product == null)
+                return false;
+            else
                 return true;
         }
 
