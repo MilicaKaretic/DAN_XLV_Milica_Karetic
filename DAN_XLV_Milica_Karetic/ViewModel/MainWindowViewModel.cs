@@ -126,6 +126,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         {          
                 return true;
         }
+
         private ICommand editProduct;
         /// <summary>
         /// Edit product command

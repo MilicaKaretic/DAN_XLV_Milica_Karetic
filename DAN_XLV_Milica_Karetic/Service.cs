@@ -30,7 +30,8 @@ namespace DAN_XLV_Milica_Karetic
 
                     for (int i = 0; i < products.Count; i++)
                     {
-                        sum += products[i].Quantity;
+                        if(products[i].Stored == "stored")
+                            sum += products[i].Quantity;
                     }
                     
                 }
@@ -61,8 +62,9 @@ namespace DAN_XLV_Milica_Karetic
                         context.SaveChanges();
 
                         product.ProductID = p.ProductID;
-
+                        
                         action = "added";
+
                         return product;
                     }
                     else
@@ -77,6 +79,7 @@ namespace DAN_XLV_Milica_Karetic
                         context.SaveChanges();
 
                         action = "updated";
+
                         return product;
                     }
                     
@@ -100,6 +103,25 @@ namespace DAN_XLV_Milica_Karetic
                     Product productToDelete = (from r in context.Products where r.ProductID == id select r).First();
                     context.Products.Remove(productToDelete);
                     context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        public void StoreProduct(int id)
+        {
+            try
+            {
+                using (WarehouseDBEntities context = new WarehouseDBEntities())
+                {
+                    Product productToStore = (from r in context.Products where r.ProductID == id select r).First();
+                    productToStore.Stored = "stored";
+                    context.SaveChanges();
+
+                    GetCurrentWarehouseQuantity();
                 }
             }
             catch (Exception ex)
