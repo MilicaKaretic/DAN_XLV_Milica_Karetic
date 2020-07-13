@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DAN_XLV_Milica_Karetic.View"
         mc:Ignorable="d"
         Title="AddProduct"
+        Background="Gray"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen">
     <Grid>

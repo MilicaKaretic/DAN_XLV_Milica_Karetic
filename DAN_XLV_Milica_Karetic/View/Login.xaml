@@ -38,7 +38,7 @@
                     Content="Login"
                     Margin="60 10"
                     Background="#545d6a"
-                    Foreground="White"
+                    Foreground="Black"
                     FontSize="18"
                     IsDefault="True">
                 <Button.Style>

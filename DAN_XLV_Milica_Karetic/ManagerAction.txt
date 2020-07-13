@@ -4,3 +4,5 @@
 13.07.2020 18:22 ----> Added ggg, code gg, quantity 8, price 7
 13.07.2020 18:24 ----> Updated Product22, code 111, quantity 100, price 100
 13.07.2020 18:25 ----> Updated Product22, code 111, quantity 10, price 100
+13.07.2020 18:39 ----> Added pro, code ihu, quantity 8, price 8
+13.07.2020 18:39 ----> Deleted pro, code ihu, quantity 8, price 8

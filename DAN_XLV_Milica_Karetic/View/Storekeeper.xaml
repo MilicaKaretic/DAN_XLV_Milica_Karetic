@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAN_XLV_Milica_Karetic.View"
         mc:Ignorable="d"
+        Background="Gray"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         Title="Storekeeper">
