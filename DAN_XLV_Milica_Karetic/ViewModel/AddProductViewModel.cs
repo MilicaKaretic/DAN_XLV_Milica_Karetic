@@ -3,6 +3,7 @@ using DAN_XLV_Milica_Karetic.Model;
 using DAN_XLV_Milica_Karetic.View;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
 {
     class AddProductViewModel : BaseViewModel
     {
+      
+
         Service service = new Service();
 
         AddProduct addProduct;
@@ -107,9 +110,15 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     if (product != null)
                     {
                         if (Service.action == "added")
+                        {
+                            service.Notify("Added " + product.ProductName + ", code " + product.ProductCode + ", quantity " + product.Quantity + ", price " + product.Price);
                             MessageBox.Show("Product has been added");
+                        }
                         else if (Service.action == "updated")
+                        {
+                            service.Notify("Updated " + product.ProductName + ", code " + product.ProductCode + ", quantity " + product.Quantity + ", price " + product.Price); ;
                             MessageBox.Show("Product has been updated");
+                        }
                         //MessageBox.Show("Product added.");
                         isUpdateProduct = true;
                         addProduct.Close();
@@ -184,5 +193,6 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         }
 
         #endregion
+
     }
 }

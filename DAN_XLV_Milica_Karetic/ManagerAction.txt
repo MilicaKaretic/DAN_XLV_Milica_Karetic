@@ -1,0 +1,3 @@
+13.07.2020 16:49 ----> Added ff, code ff, quantity 55, price 5
+13.07.2020 16:49 ----> Updated ff, code ff, quantity 54, price 5
+13.07.2020 16:49 ----> Deleted ff, code ff, quantity 54, price 5

@@ -9,6 +9,34 @@ namespace DAN_XLV_Milica_Karetic
 {
     public class Service
     {
+
+        public Service()
+        {
+            onNotification = log.WriteActionToFile;
+        }
+
+        Logger log = new Logger();
+
+        #region Delegate logger
+
+        //delegate for notification user
+        public delegate void Notification(string text);
+        //event based on that delegate
+        public event Notification onNotification;
+
+        /// <summary>
+        /// Raise an event
+        /// </summary>
+        internal virtual void Notify(string text)
+        {
+            if (onNotification != null)
+            {
+                onNotification(text);
+            }
+
+        }
+        #endregion
+
         /// <summary>
         /// track current product quantity in warehouse
         /// </summary>
@@ -41,6 +69,7 @@ namespace DAN_XLV_Milica_Karetic
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+            
         }
 
         public Product AddProduct(Product product)

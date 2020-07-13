@@ -3,6 +3,7 @@ using DAN_XLV_Milica_Karetic.Model;
 using DAN_XLV_Milica_Karetic.View;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,11 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
 {
     class MainWindowViewModel : BaseViewModel
     {
+        
+
         MainWindow main;
         Service service = new Service();
+        public static string fileName = @"..\..\ManagerActions.txt";
 
         #region Properties
 
@@ -215,6 +219,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     else
                     {
                         service.DeleteProduct(productID);
+                        service.Notify("Deleted " + product.ProductName + ", code " + product.ProductCode + ", quantity " + product.Quantity + ", price " + product.Price);
                         MessageBox.Show("Product has been deleted");
                     }
 
@@ -278,5 +283,6 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
             return true;
         }
         #endregion
+
     }
 }
