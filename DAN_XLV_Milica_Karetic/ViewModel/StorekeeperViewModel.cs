@@ -149,6 +149,40 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                 return true;
         }
 
+        private ICommand logOut;
+        /// <summary>
+        /// logout command
+        /// </summary>
+        public ICommand LogOut
+        {
+            get
+            {
+                if (logOut == null)
+                {
+                    logOut = new RelayCommand(param => LogOutExecute(), param => CanLogOutExecute());
+                }
+                return logOut;
+            }
+        }
+
+        /// <summary>
+        /// logout execute
+        /// </summary>
+        private void LogOutExecute()
+        {
+            Login log = new Login();
+            log.Show();
+            storekeeper.Close();
+        }
+
+        /// <summary>
+        /// Can logout execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanLogOutExecute()
+        {
+            return true;
+        }
         #endregion
     }
 }

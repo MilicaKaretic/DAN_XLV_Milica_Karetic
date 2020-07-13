@@ -63,12 +63,19 @@
             </DataGrid>
         </Grid>
         <Button Grid.Column="3"
-                Grid.Row="1"
+                Grid.Row="3"
                 Name="btnStoreProduct"
                 Content="Store Product"
                 Width="80"
                 Height="20"
                 Command="{Binding StoreProduct, UpdateSourceTrigger=PropertyChanged}"
+                FontWeight="Bold" />
+        <Button Grid.Column="3"
+                Name="btnLogout"
+                Content="Logout"
+                Width="80"
+                Height="20"
+                Command="{Binding LogOut, UpdateSourceTrigger=PropertyChanged}"
                 FontWeight="Bold" />
     </Grid>
 </Window>

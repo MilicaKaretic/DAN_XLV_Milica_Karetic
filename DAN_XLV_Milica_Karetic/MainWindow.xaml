@@ -87,6 +87,13 @@
             Height="20"
             Command="{Binding DeleteProduct, UpdateSourceTrigger=PropertyChanged}"
             FontWeight="Bold" />
-</Grid>
+        <Button Grid.Column="3"
+                Name="btnLogout"
+                Content="Logout"
+                Width="80"
+                Height="20"
+                Command="{Binding LogOut, UpdateSourceTrigger=PropertyChanged}"
+                FontWeight="Bold" />
+    </Grid>
 </Window>
 
