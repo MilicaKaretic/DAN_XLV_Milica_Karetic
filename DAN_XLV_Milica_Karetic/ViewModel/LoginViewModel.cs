@@ -49,7 +49,9 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
 
         #region Commands
         private ICommand login;
-
+        /// <summary>
+        /// login command
+        /// </summary>
         public ICommand Login
         {
             get

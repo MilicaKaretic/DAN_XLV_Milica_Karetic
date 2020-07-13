@@ -70,7 +70,7 @@
       <DependentUpon>WarehouseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs" />
-    <Compile Include="Validation.cs" />
+    <Compile Include="ShowMessage.cs" />
     <Compile Include="ViewModel\AddProductViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

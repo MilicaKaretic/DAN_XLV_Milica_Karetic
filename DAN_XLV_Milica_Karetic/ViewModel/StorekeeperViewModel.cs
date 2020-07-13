@@ -109,18 +109,18 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     
                     if (Product.Stored == "stored")
                     {
-                        MessageBox.Show("Product is already stored");
+                        service.NotifyUser("Product is already stored");
                     }
                     else
                     {
                         if (Product.Quantity <= num)
                         {
                             service.StoreProduct(productID);
-                            MessageBox.Show("Product has been stored");
+                            service.NotifyUser("Product has been stored");
                         }
                         else
                         {
-                            MessageBox.Show("There is no enough space in warehouse");
+                            service.NotifyUser("There is no enough space in warehouse");
                         }                      
                     }
 

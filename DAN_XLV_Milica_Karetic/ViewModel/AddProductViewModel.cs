@@ -2,20 +2,16 @@
 using DAN_XLV_Milica_Karetic.Model;
 using DAN_XLV_Milica_Karetic.View;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DAN_XLV_Milica_Karetic.ViewModel
 {
+    /// <summary>
+    /// Add product view model class
+    /// </summary>
     class AddProductViewModel : BaseViewModel
     {
-      
-
         Service service = new Service();
 
         AddProduct addProduct;
@@ -65,8 +61,8 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         /// <summary>
         /// Constructor with two parameters
         /// </summary>
-        /// <param name="addProductOpen">Add Product viee</param>
-        /// <param name="productEdit">Product</param>
+        /// <param name="addProductOpen">Add Product vie2</param>
+        /// <param name="productEdit">Product to edit</param>
         public AddProductViewModel(AddProduct addProductOpen, Product productEdit)
         {
             product = productEdit;
@@ -94,13 +90,13 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         }
 
         /// <summary>
-        /// Save execute - how to save student
+        /// Save execute - how to save product
         /// </summary>
         private void SaveExecute()
         {
             try
             {
-                if(Product.Quantity == 0 || Product.Price == 0)
+                if(Product.Quantity <= 0 || Product.Price <= 0)
                 {
                     MessageBox.Show("Invalid data input. Please try again.");
                 }
@@ -111,15 +107,16 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
                     {
                         if (Service.action == "added")
                         {
+                            //event
                             service.Notify("Added " + product.ProductName + ", code " + product.ProductCode + ", quantity " + product.Quantity + ", price " + product.Price);
-                            MessageBox.Show("Product has been added");
+                           // MessageBox.Show("Product has been added");
                         }
                         else if (Service.action == "updated")
                         {
+                            //event
                             service.Notify("Updated " + product.ProductName + ", code " + product.ProductCode + ", quantity " + product.Quantity + ", price " + product.Price); ;
-                            MessageBox.Show("Product has been updated");
+                            //MessageBox.Show("Product has been updated");
                         }
-                        //MessageBox.Show("Product added.");
                         isUpdateProduct = true;
                         addProduct.Close();
                     }

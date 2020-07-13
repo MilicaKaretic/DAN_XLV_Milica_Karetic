@@ -12,13 +12,13 @@ using System.Windows.Input;
 
 namespace DAN_XLV_Milica_Karetic.ViewModel
 {
+    /// <summary>
+    /// Main window view model class
+    /// </summary>
     class MainWindowViewModel : BaseViewModel
     {
-        
-
         MainWindow main;
         Service service = new Service();
-        public static string fileName = @"..\..\ManagerActions.txt";
 
         #region Properties
 
@@ -85,7 +85,7 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
 
         private ICommand addProduct;
         /// <summary>
-        /// Add item command
+        /// Add product command
         /// </summary>
         public ICommand AddProduct
         {
@@ -123,12 +123,12 @@ namespace DAN_XLV_Milica_Karetic.ViewModel
         }
 
         /// <summary>
-        /// Can Add item execute
+        /// Can Add product execute
         /// </summary>
         /// <returns>Can or cannot</returns>
         private bool CaAddProductExecute()
-        {          
-                return true;
+        {
+            return true;
         }
 
         private ICommand editProduct;

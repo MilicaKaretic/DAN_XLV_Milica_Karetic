@@ -2,20 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAN_XLV_Milica_Karetic
 {
     public class Service
     {
-
         public Service()
         {
+            //events
             onNotification = log.WriteActionToFile;
+            onNotificationStore = mess.ShowMessageToUser;
         }
 
         Logger log = new Logger();
+        ShowMessage mess = new ShowMessage();
 
         #region Delegate logger
 
@@ -24,8 +24,11 @@ namespace DAN_XLV_Milica_Karetic
         //event based on that delegate
         public event Notification onNotification;
 
+        //another event for store product notification
+        public event Notification onNotificationStore;
+
         /// <summary>
-        /// Raise an event
+        /// Raise an event for logging manager actions to file
         /// </summary>
         internal virtual void Notify(string text)
         {
@@ -33,7 +36,18 @@ namespace DAN_XLV_Milica_Karetic
             {
                 onNotification(text);
             }
+        }
 
+        /// <summary>
+        /// Raise an event for notify user if storing is successful or not
+        /// </summary>
+        /// <param name="text"></param>
+        internal virtual void NotifyUser(string text)
+        {
+            if(onNotificationStore != null)
+            {
+                onNotificationStore(text);
+            }
         }
         #endregion
 
@@ -72,6 +86,11 @@ namespace DAN_XLV_Milica_Karetic
             
         }
 
+        /// <summary>
+        /// Add or edit product in warehouse
+        /// </summary>
+        /// <param name="product">Product to add or edit</param>
+        /// <returns>Added or updated product</returns>
         public Product AddProduct(Product product)
         {
             try
@@ -80,6 +99,7 @@ namespace DAN_XLV_Milica_Karetic
                 {
                     if(product.ProductID == 0)
                     {
+                        //add product
                         Product p = new Product();
                         p.ProductName = product.ProductName;
                         p.ProductCode = product.ProductCode;
@@ -98,7 +118,7 @@ namespace DAN_XLV_Milica_Karetic
                     }
                     else
                     {
-                        //edit
+                        //edit product
                         Product productToEdit = (from x in context.Products where x.ProductID == product.ProductID select x).FirstOrDefault();
                         productToEdit.ProductName = product.ProductName;
                         productToEdit.ProductCode = product.ProductCode;
@@ -123,6 +143,10 @@ namespace DAN_XLV_Milica_Karetic
 
         }
 
+        /// <summary>
+        /// Delete product from warehouse
+        /// </summary>
+        /// <param name="id">Product id</param>
         public void DeleteProduct(int id)
         {
             try
@@ -140,6 +164,10 @@ namespace DAN_XLV_Milica_Karetic
             }
         }
 
+        /// <summary>
+        /// Store not stored product in warehpuse
+        /// </summary>
+        /// <param name="id"></param>
         public void StoreProduct(int id)
         {
             try
