@@ -12,7 +12,7 @@ CREATE TABLE Product(
 	ProductCode VARCHAR (15) NOT NULL,
 	Quantity INT NOT NULL,
 	Price INT NOT NULL,
-	Stored BIT NOT NULL
+	Stored varchar(20) NOT NULL
 );
 
-INSERT INTO Product VALUES ('Product1', '111', 10, 100, 0);
+INSERT INTO Product VALUES ('Product1', '111', 10, 100, 'not stored');

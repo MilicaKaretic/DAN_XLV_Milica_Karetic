@@ -19,6 +19,6 @@ namespace DAN_XLV_Milica_Karetic.Model
         public string ProductCode { get; set; }
         public int Quantity { get; set; }
         public int Price { get; set; }
-        public bool Stored { get; set; }
+        public string Stored { get; set; }
     }
 }

@@ -40,5 +40,50 @@ namespace DAN_XLV_Milica_Karetic
                 Console.WriteLine(ex.Message.ToString());
             }
         }
+
+        public Product AddProduct(Product product)
+        {
+            try
+            {
+                using (WarehouseDBEntities context = new WarehouseDBEntities())
+                {
+                    if(product.ProductID == 0)
+                    {
+                        Product p = new Product();
+                        p.ProductName = product.ProductName;
+                        p.ProductCode = product.ProductCode;
+                        p.Quantity = product.Quantity;
+                        p.Price = product.Price;
+                        p.Stored = "not stored";
+
+                        context.Products.Add(p);
+                        context.SaveChanges();
+
+                        product.ProductID = p.ProductID;
+                        return product;
+                    }
+                    else
+                    {
+                        //edit
+                        Product productToEdit = (from x in context.Products where x.ProductID == product.ProductID select x).FirstOrDefault();
+                        productToEdit.ProductName = product.ProductName;
+                        productToEdit.ProductCode = product.ProductCode;
+                        productToEdit.Price = product.Price;
+                        productToEdit.Quantity = product.Quantity;
+                        productToEdit.ProductID = product.ProductID;
+                        context.SaveChanges();
+                        return product;
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+            
+
+        }
     }
 }

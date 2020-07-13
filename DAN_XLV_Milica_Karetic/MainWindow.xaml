@@ -6,8 +6,87 @@
         xmlns:local="clr-namespace:DAN_XLV_Milica_Karetic"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        SizeToContent="WidthAndHeight">
     <Grid>
-        
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="20" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="6" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="20" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="20" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="6" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="20" />
+    </Grid.RowDefinitions>
+    <Grid Grid.Column="1"
+          Grid.Row="1"
+          Height="auto"
+          Width="auto">
+        <DataGrid Name="DataGridResults"
+                  ItemsSource="{Binding ProductList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Product,UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  Visibility="{Binding ViewProduct, UpdateSourceTrigger=PropertyChanged}"
+                  HorizontalGridLinesBrush="Black"
+                  BorderBrush="Black"
+                  Foreground="Black"
+                  FontWeight="Bold">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name"
+                                    Binding="{Binding ProductName}" />
+                <DataGridTextColumn Header="Product Code"
+                                    Binding="{Binding ProductCode}" />
+                <DataGridTextColumn Header="Quantity"
+                                    Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Price"
+                                    Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Stored"
+                                    Binding="{Binding Stored}" />
+                
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+    <Button Grid.Column="3"
+            Grid.Row="1"
+            Name="btnAddProduct"
+            Content="Add Product"
+            Width="80"
+            Height="20"
+            Command="{Binding AddProduct, UpdateSourceTrigger=PropertyChanged}"
+            FontWeight="Bold" />
+    <Button Grid.Column="3"
+            Grid.Row="3"
+            Name="btnEditResult"
+            Content="Edit Student"
+            Width="80"
+            Height="20"
+            Command="{Binding EditProduct, UpdateSourceTrigger=PropertyChanged}"
+            FontWeight="Bold" />
+    <Button Grid.Column="3"
+            Grid.Row="5"
+            Name="btnDeleteResult"
+            Content="Delete Student"
+            Width="80"
+            Height="20"
+            Command="{Binding DeleteProduct, UpdateSourceTrigger=PropertyChanged}"
+            FontWeight="Bold" />
+</Grid>
 </Window>
+
